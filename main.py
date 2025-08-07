@@ -66,12 +66,12 @@ while True:  # Loop infinito
                 email_autor = input('Digite o email do autor: ')
                 biografia_autor = input('Digite a biografia do autor: ')
                 telefone_autor = input('Digite o telefone do autor: ')
-                autor = []
-                autor.append(nome_autor)
-                autor.append(email_autor)
-                autor.append(telefone_autor)
-                autor.append(biografia_autor)
-                tabela_autores.append(autor)
+                novo_autor = []
+                novo_autor.append(nome_autor)
+                novo_autor.append(email_autor)
+                novo_autor.append(telefone_autor)
+                novo_autor.append(biografia_autor)
+                tabela_autores.append(novo_autor)
                 print('Autor cadastrado com sucesso!')
             elif opcao_autor == '3':
                 print('Excluindo autor...')
