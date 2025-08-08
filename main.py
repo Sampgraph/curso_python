@@ -46,8 +46,10 @@ while True:  # Loop infinito
         break  # Sair do loop
     elif opcao == '1':  # else if
         print(menu_categorias)
+        # categoria = {'nome': 'Ficção Científica'}
     elif opcao == '2':
         print(menu_editoras)
+        # editora = {'nome': 'Editora XYZ', 'endereco': 'Rua ABC, 123', 'telefone': '1234-5678'}
     elif opcao == '3':
         while True:
             print(menu_autores)
