@@ -57,9 +57,9 @@ while True:  # Loop infinito
                 break  # Sair do loop interno
             if opcao_autor == '1':
                 print('Listando todos os autores...')
-                print('Nome | Email | Telefone | Biografia')
-                for autor in tabela_autores:
-                    print(autor[0], '|', autor[1], '|', autor[2], '|', autor[3])
+                print('ID | Nome | Email | Telefone')
+                for index, autor in enumerate(tabela_autores, start=1):
+                    print(f'{index} | {autor[0]} | {autor[1]} | {autor[2]}')
             elif opcao_autor == '2':
                 print('Adicionando novo autor...')
                 nome_autor = input('Digite o nome do autor: ')
@@ -75,10 +75,28 @@ while True:  # Loop infinito
                 print('Autor cadastrado com sucesso!')
             elif opcao_autor == '3':
                 print('Excluindo autor...')
+                id_autor = int(input('Digite o ID do autor a ser excluído: '))  # cast = converte de str para int
+                tabela_autores.pop(id_autor - 1)  # -1 para ajustar o índice
+                print('Autor excluído com sucesso!')
             elif opcao_autor == '4':
                 print('Buscando autor por Id...')
+                id_autor = int(input('Digite o ID do autor a ser buscado: '))  # cast = converte de str para int
+                autor_encontrado = tabela_autores[id_autor - 1]
+                print('ID | Nome | Email | Telefone | Biografia')
+                print(f'{id_autor} | {autor_encontrado[0]} | {autor_encontrado[1]}  | {autor_encontrado[2]} | {autor_encontrado[3]}')
             elif opcao_autor == '5':
                 print('Editando autor...')
+                id_autor = int(input('Digite o ID do autor a ser buscado: '))  # cast = converte de str para int
+                autor_editado = tabela_autores[id_autor - 1]
+                nome_autor = input('Digite o nome do autor: ')
+                email_autor = input('Digite o email do autor: ')
+                biografia_autor = input('Digite a biografia do autor: ')
+                telefone_autor = input('Digite o telefone do autor: ')
+                autor_editado[0] = nome_autor
+                autor_editado[1] = email_autor
+                autor_editado[2] = telefone_autor
+                autor_editado[3] = biografia_autor
+                print('Autor editado com sucesso!')
             else:
                 print('Opção inválida! Tente novamente.')
 
