@@ -59,18 +59,19 @@ while True:  # Loop infinito
                 print('Listando todos os autores...')
                 print('ID | Nome | Email | Telefone')
                 for index, autor in enumerate(tabela_autores, start=1):
-                    print(f'{index} | {autor[0]} | {autor[1]} | {autor[2]}')
+                    print(f"{index} | {autor['nome']} | {autor['email']} | {autor['telefone']}")
             elif opcao_autor == '2':
                 print('Adicionando novo autor...')
                 nome_autor = input('Digite o nome do autor: ')
                 email_autor = input('Digite o email do autor: ')
                 biografia_autor = input('Digite a biografia do autor: ')
                 telefone_autor = input('Digite o telefone do autor: ')
-                novo_autor = []
-                novo_autor.append(nome_autor)
-                novo_autor.append(email_autor)
-                novo_autor.append(telefone_autor)
-                novo_autor.append(biografia_autor)
+                novo_autor = {
+                    'nome': nome_autor,
+                    'email': email_autor,
+                    'telefone': telefone_autor,
+                    'biografia': biografia_autor
+                }
                 tabela_autores.append(novo_autor)
                 print('Autor cadastrado com sucesso!')
             elif opcao_autor == '3':
@@ -83,7 +84,7 @@ while True:  # Loop infinito
                 id_autor = int(input('Digite o ID do autor a ser buscado: '))  # cast = converte de str para int
                 autor_encontrado = tabela_autores[id_autor - 1]
                 print('ID | Nome | Email | Telefone | Biografia')
-                print(f'{id_autor} | {autor_encontrado[0]} | {autor_encontrado[1]}  | {autor_encontrado[2]} | {autor_encontrado[3]}')
+                print(f"{id_autor} | {autor_encontrado['nome']} | {autor_encontrado['email']}  | {autor_encontrado['telefone']} | {autor_encontrado['biografia']}")
             elif opcao_autor == '5':
                 print('Editando autor...')
                 id_autor = int(input('Digite o ID do autor a ser buscado: '))  # cast = converte de str para int
@@ -92,10 +93,10 @@ while True:  # Loop infinito
                 email_autor = input('Digite o email do autor: ')
                 biografia_autor = input('Digite a biografia do autor: ')
                 telefone_autor = input('Digite o telefone do autor: ')
-                autor_editado[0] = nome_autor
-                autor_editado[1] = email_autor
-                autor_editado[2] = telefone_autor
-                autor_editado[3] = biografia_autor
+                autor_editado['nome'] = nome_autor
+                autor_editado['email'] = email_autor
+                autor_editado['telefone'] = telefone_autor
+                autor_editado['biografia'] = biografia_autor
                 print('Autor editado com sucesso!')
             else:
                 print('Opção inválida! Tente novamente.')
