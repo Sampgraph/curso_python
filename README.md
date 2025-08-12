@@ -72,12 +72,42 @@ else:
 
 ## if-elif-else condition
 ```
-if condition:
+if condition1:
     expression1
-elif:
+elif condition2:
     expression2
-elif:
+elif condition3:
     expression3
 else:
     expression4
 ```
+
+# Estruturas de dados
+
+Estruturas de Dados são uma maneira de organizar dados para que eles possam ser acessados ​​de forma mais eficiente dependendo da situação.
+
+## Listas (`list`)
+
+### Métodos de uma lista
+
+| Comando | Resultado |
+| ----- | ---- |
+| [1, 2, 3].append(4) | [1, 2, 3, 4] |
+| [1, 2, 3].clear() | [] |
+| [1, 2, 3].copy() | [1, 2, 3] |
+| [1, 2, 3].count(2) | 1 |
+| [1, 2, 3].extend([4, 5]) | [1, 2, 3, 4, 5] |
+| [1, 2, 3].index(2) | 1 |
+| [1, 2, 3].insert(1, 'a') | [1, 'a', 2, 3] |
+| [1, 2, 3].pop() | 3 # e a lista se torna [1, 2] |
+| [1, 2, 3].pop(1) | 2 # e a lista se torna [1, 3] |
+| [1, 2, 3].remove(2) | [1, 3] |
+| [3, 1, 2].reverse() | [2, 1, 3] |
+| [3, 1, 2].sort() | [1, 2, 3] |
+| [3, 1, 2].sort(reverse=True) | [3, 2, 1] |
+| [1, 2, 3] + [4, 5] | [1, 2, 3, 4, 5] |
+| [1, 2, 3] * 2 | [1, 2, 3, 1, 2, 3] |
+| [1, 2, 3][1:] | |
+| [1, 2, 3][:2] | |
+| [1, 2, 3][::-1] | |
+| len([1, 2, 3]) | 3 |
