@@ -38,6 +38,7 @@ menu_livros = '''[Livros] Escolha uma das seguintes opções:
 tabela_autores = [] # list()
 tabela_categorias = []
 tabela_editoras = []
+tabela_livros = []
 
 while True:  # Loop infinito
     print(menu_principal)  # Exibe o menu principal
@@ -243,7 +244,53 @@ while True:  # Loop infinito
 
             input('\nDigite <ENTER> para continuar...')
     elif opcao == '4':
-        print(menu_livros)
+        while True:
+            print(menu_livros)
+            opcao_livro = input('Digite a opção: ')
+            if opcao_livro == '0':
+                break
+            elif opcao_livro == '1':
+                if tabela_livros == []:
+                    print('Não existem livros cadastrados.')
+                    input('\nDigite <ENTER> para continuar...\n')
+                    continue
+
+                print('ID | Título')
+                for index, livro in enumerate(tabela_livros):
+                    print(f"{index + 1} | {livro['titulo']}")
+            elif opcao_livro == '2':
+                pass
+            elif opcao_livro == '3':
+                if tabela_livros == []:
+                    print('Não existem livros cadastrados.')
+                    input('\nDigite <ENTER> para continuar...\n')
+                    continue
+
+                id_livro = int(input('Digite o ID do livro a ser excluído: '))
+                tabela_livros.pop(id_livro - 1)
+                print('Livro excluído com sucesso!')
+            elif opcao_livro == '4':
+                if tabela_livros == []:
+                    print('Não existem livros cadastrados.')
+                    input('\nDigite <ENTER> para continuar...\n')
+                    continue
+
+                id_livro = int(input('Digite o ID do livro a ser consultado: '))
+                livro = tabela_livros[id_livro - 1]
+                print('ID | Título ')
+                print(f"{id_livro} | {livro['titulo']} ")
+            elif opcao_livro == '5':
+                if tabela_livros == []:
+                    print('Não existem livros cadastrados.')
+                    input('\nDigite <ENTER> para continuar...\n')
+                    continue
+
+                id_livro = int(input('Digite o ID do livro a ser editado: '))
+                livro = tabela_livros[id_livro - 1]
+                titulo_livro = input('Digite o título do livro: ')
+                print('Livro editado com sucesso!')
+            else:
+                print('Opção inválida! Tente novamente.')
     else:
         print('Opção inválida! Tente novamente.')
         input('\nDigite <ENTER> para continuar...')
