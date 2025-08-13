@@ -75,8 +75,16 @@ while True:  # Loop infinito
                     input('\nDigite <ENTER> para continuar...\n')
                     continue
 
-                id_categoria = int(input('Digite o ID da categoria a ser excluída: '))
-                tabela_categorias.pop(id_categoria - 1)
+                while True:
+                    try:
+                        id_categoria = int(input('Digite o ID da categoria a ser excluída: '))
+                        tabela_categorias.pop(id_categoria - 1)
+                    except:
+                        print('ID inválido. Tente novamente.')
+                        continue
+                    else:
+                        break
+
                 print('Categoria excluída com sucesso!')
             elif opcao_categoria == '4':
                 if tabela_categorias == []:
@@ -84,8 +92,16 @@ while True:  # Loop infinito
                     input('\nDigite <ENTER> para continuar...\n')
                     continue
 
-                id_categoria = int(input('Digite o ID do categoria a ser consultada: '))
-                categoria = tabela_categorias[id_categoria - 1]
+                while True:
+                    try:
+                        id_categoria = int(input('Digite o ID do categoria a ser consultada: '))
+                        categoria = tabela_categorias[id_categoria - 1]
+                    except:
+                        print('ID inválido. Tente novamente.')
+                        continue
+                    else:
+                        break
+
                 print('ID | Nome')
                 print(f"{id_categoria} | {categoria['nome']}")
             elif opcao_categoria == '5':
@@ -94,8 +110,16 @@ while True:  # Loop infinito
                     input('\nDigite <ENTER> para continuar...\n')
                     continue
 
-                id_categoria = int(input('Digite o ID da categoria a ser editada: '))
-                categoria = tabela_categorias[id_categoria - 1]
+                while True:
+                    try:
+                        id_categoria = int(input('Digite o ID da categoria a ser editada: '))
+                        categoria = tabela_categorias[id_categoria - 1]
+                    except:
+                        print('ID inválido. Tente novamente.')
+                        continue
+                    else:
+                        break
+
                 nome_categoria = input('Digite o nome da categoria: ')
                 categoria['nome'] = nome_categoria
                 print('Categoria editada com sucesso!')
@@ -135,8 +159,15 @@ while True:  # Loop infinito
                     input('\nDigite <ENTER> para continuar...\n')
                     continue
 
-                id_editora = int(input('Digite o ID da editora a ser excluída: '))
-                tabela_editoras.pop(id_editora - 1)
+                while True:
+                    try:
+                        id_editora = int(input('Digite o ID da editora a ser excluída: '))
+                        tabela_editoras.pop(id_editora - 1)
+                    except:
+                        print('ID inválido. Tente novamente.')
+                        continue
+                    else:
+                        break
                 print('Editora excluída com sucesso!')
             elif opcao_editora == '4':
                 if tabela_editoras == []:
@@ -144,8 +175,16 @@ while True:  # Loop infinito
                     input('\nDigite <ENTER> para continuar...\n')
                     continue
 
-                id_editora = int(input('Digite o ID da editora a ser consultada: '))
-                editora = tabela_editoras[id_editora - 1]
+                while True:
+                    try:
+                        id_editora = int(input('Digite o ID da editora a ser consultada: '))
+                        editora = tabela_editoras[id_editora - 1]
+                    except:
+                        print('ID inválido. Tente novamente.')
+                        continue
+                    else:
+                        break
+
                 print('ID | Nome | Endereço | Telefone')
                 print(f"{id_editora} | {editora['nome']} | {editora['endereco']} | {editora['telefone']}")
             elif opcao_editora == '5':
@@ -154,8 +193,15 @@ while True:  # Loop infinito
                     input('\nDigite <ENTER> para continuar...\n')
                     continue
 
-                id_editora = int(input('Digite o ID da editora a ser editada: '))
-                editora = tabela_editoras[id_editora - 1]
+                while True:
+                    try:
+                        id_editora = int(input('Digite o ID da editora a ser editada: '))
+                        editora = tabela_editoras[id_editora - 1]
+                    except:
+                        print('ID inválido. Tente novamente.')
+                        continue
+                    else:
+                        break
 
                 nome_editora = input('Digite o nome da editora: ')
                 endereco_editora = input('Digite o endereço da editora: ')
@@ -206,9 +252,16 @@ while True:  # Loop infinito
                     input('\nDigite <ENTER> para continuar...\n')
                     continue
 
-                print('Excluindo autor...')
-                id_autor = int(input('Digite o ID do autor a ser excluído: '))  # cast = converte de str para int
-                tabela_autores.pop(id_autor - 1)  # -1 para ajustar o índice
+                while True:
+                    try:
+                        id_autor = int(input('Digite o ID do autor a ser excluído: '))  # cast = converte de str para int
+                        tabela_autores.pop(id_autor - 1)  # -1 para ajustar o índice
+                    except:
+                        print('ID inválido. Tente novamente.')
+                        continue
+                    else:
+                        break
+
                 print('Autor excluído com sucesso!')
             elif opcao_autor == '4':
                 if tabela_autores == []:
@@ -216,9 +269,16 @@ while True:  # Loop infinito
                     input('\nDigite <ENTER> para continuar...\n')
                     continue
 
-                print('Buscando autor por Id...')
-                id_autor = int(input('Digite o ID do autor a ser buscado: '))  # cast = converte de str para int
-                autor_encontrado = tabela_autores[id_autor - 1]
+                while True:
+                    try:
+                        id_autor = int(input('Digite o ID do autor a ser buscado: '))  # cast = converte de str para int
+                        autor_encontrado = tabela_autores[id_autor - 1]
+                    except:
+                        print('ID inválido. Tente novamente.')
+                        continue
+                    else:
+                        break
+
                 print('ID | Nome | Email | Telefone | Biografia')
                 print(f"{id_autor} | {autor_encontrado['nome']} | {autor_encontrado['email']}  | {autor_encontrado['telefone']} | {autor_encontrado['biografia']}")
             elif opcao_autor == '5':
@@ -227,9 +287,16 @@ while True:  # Loop infinito
                     input('\nDigite <ENTER> para continuar...\n')
                     continue
 
-                print('Editando autor...')
-                id_autor = int(input('Digite o ID do autor a ser buscado: '))  # cast = converte de str para int
-                autor_editado = tabela_autores[id_autor - 1]
+                while True:
+                    try:
+                        id_autor = int(input('Digite o ID do autor a ser buscado: '))  # cast = converte de str para int
+                        autor_editado = tabela_autores[id_autor - 1]
+                    except:
+                        print('ID inválido. Tente novamente.')
+                        continue
+                    else:
+                        break
+
                 nome_autor = input('Digite o nome do autor: ')
                 email_autor = input('Digite o email do autor: ')
                 biografia_autor = input('Digite a biografia do autor: ')
@@ -269,9 +336,34 @@ while True:  # Loop infinito
                 paginas = input('Digite o número de páginas do livro: ')
                 isbn = input('Digite o ISBN do livro: ')
                 resumo = input('Digite o resumo do livro: ')
-                id_autor = int(input('Digite o ID do autor do livro: '))
-                id_categoria = int(input('Digite o ID da categoria do livro: '))
-                id_editora = int(input('Digite o ID da editora do livro: '))
+                while True:
+                    try:
+                        id_autor = int(input('Digite o ID do autor do livro: '))
+                        autor_tabela = tabela_autores[id_autor - 1]
+                    except:
+                        print('ID inválido. Tente novamente.')
+                        continue
+                    else:
+                        break
+
+                while True:
+                    try:
+                        id_categoria = int(input('Digite o ID da categoria do livro: '))
+                        categoria_tabela = tabela_categorias[id_categoria - 1]
+                    except:
+                        print('ID inválido. Tente novamente.')
+                        continue
+                    else:
+                        break
+                while True:
+                    try:
+                        id_editora = int(input('Digite o ID da editora do livro: '))
+                        editora_tabela = tabela_editoras[id_editora - 1]
+                    except:
+                        print('ID inválido. Tente novamente.')
+                        continue
+                    else:
+                        break
 
                 novo_livro = {
                     'titulo': titulo,
@@ -279,9 +371,9 @@ while True:  # Loop infinito
                     'paginas': paginas,
                     'isbn': isbn,
                     'resumo': resumo,
-                    'autor': tabela_autores[id_autor - 1],
-                    'categoria': tabela_categorias[id_categoria - 1],
-                    'editora': tabela_editoras[id_editora - 1]
+                    'autor': autor_tabela,
+                    'categoria': categoria_tabela,
+                    'editora': editora_tabela
                 }
                 tabela_livros.append(novo_livro)
                 print('Livro cadastrado com sucesso!')
@@ -291,8 +383,16 @@ while True:  # Loop infinito
                     input('\nDigite <ENTER> para continuar...\n')
                     continue
 
-                id_livro = int(input('Digite o ID do livro a ser excluído: '))
-                tabela_livros.pop(id_livro - 1)
+                while True:
+                    try:
+                        id_livro = int(input('Digite o ID do livro a ser excluído: '))
+                        tabela_livros.pop(id_livro - 1)
+                    except:
+                        print('ID inválido. Tente novamente.')
+                        continue
+                    else:
+                        break
+
                 print('Livro excluído com sucesso!')
             elif opcao_livro == '4':
                 if tabela_livros == []:
@@ -300,8 +400,16 @@ while True:  # Loop infinito
                     input('\nDigite <ENTER> para continuar...\n')
                     continue
 
-                id_livro = int(input('Digite o ID do livro a ser consultado: '))
-                livro = tabela_livros[id_livro - 1]
+                while True:
+                    try:
+                        id_livro = int(input('Digite o ID do livro a ser consultado: '))
+                        livro = tabela_livros[id_livro - 1]
+                    except:
+                        print('ID inválido. Tente novamente.')
+                        continue
+                    else:
+                        break
+
                 print('ID | Título | Ano | Páginas | ISBN | Autor | Categoria | Editora | Resumo')
                 print(f"{id_livro} | {livro['titulo']} | {livro['ano']} | {livro['paginas']} | {livro['isbn']} | {livro['autor']['nome']} | {livro['categoria']['nome']} | {livro['editora']['nome']} | {livro['resumo']}")
             elif opcao_livro == '5':
@@ -310,8 +418,16 @@ while True:  # Loop infinito
                     input('\nDigite <ENTER> para continuar...\n')
                     continue
 
-                id_livro = int(input('Digite o ID do livro a ser editado: '))
-                livro = tabela_livros[id_livro - 1]
+                while True:
+                    try:
+                        id_livro = int(input('Digite o ID do livro a ser editado: '))
+                        livro = tabela_livros[id_livro - 1]
+                    except:
+                        print('ID inválido. Tente novamente.')
+                        continue
+                    else:
+                        break
+
                 titulo_livro = input('Digite o título do livro: ')
                 print('Livro editado com sucesso!')
             else:
