@@ -255,11 +255,36 @@ while True:  # Loop infinito
                     input('\nDigite <ENTER> para continuar...\n')
                     continue
 
-                print('ID | Título')
+                print('ID | Título | Ano | Páginas | ISBN | Autor | Categoria | Editora')
                 for index, livro in enumerate(tabela_livros):
-                    print(f"{index + 1} | {livro['titulo']}")
+                    print(f"{index + 1} | {livro['titulo']} | {livro['ano']} | {livro['paginas']} | {livro['isbn']} | {livro['autor']['nome']} | {livro['categoria']['nome']} | {livro['editora']['nome']}")
             elif opcao_livro == '2':
-                pass
+                if tabela_autores == [] or tabela_editoras == [] or tabela_categorias == []:
+                    print('É necessário ter pelo menos um autor, uma editora e uma categoria cadastrados para adicionar um livro.')
+                    input('\nDigite <ENTER> para continuar...\n')
+                    continue
+
+                titulo = input('Digite o título do livro: ')
+                ano = input('Digite o ano de publicação do livro: ')
+                paginas = input('Digite o número de páginas do livro: ')
+                isbn = input('Digite o ISBN do livro: ')
+                resumo = input('Digite o resumo do livro: ')
+                id_autor = int(input('Digite o ID do autor do livro: '))
+                id_categoria = int(input('Digite o ID da categoria do livro: '))
+                id_editora = int(input('Digite o ID da editora do livro: '))
+
+                novo_livro = {
+                    'titulo': titulo,
+                    'ano': ano,
+                    'paginas': paginas,
+                    'isbn': isbn,
+                    'resumo': resumo,
+                    'autor': tabela_autores[id_autor - 1],
+                    'categoria': tabela_categorias[id_categoria - 1],
+                    'editora': tabela_editoras[id_editora - 1]
+                }
+                tabela_livros.append(novo_livro)
+                print('Livro cadastrado com sucesso!')
             elif opcao_livro == '3':
                 if tabela_livros == []:
                     print('Não existem livros cadastrados.')
@@ -277,8 +302,8 @@ while True:  # Loop infinito
 
                 id_livro = int(input('Digite o ID do livro a ser consultado: '))
                 livro = tabela_livros[id_livro - 1]
-                print('ID | Título ')
-                print(f"{id_livro} | {livro['titulo']} ")
+                print('ID | Título | Ano | Páginas | ISBN | Autor | Categoria | Editora | Resumo')
+                print(f"{id_livro} | {livro['titulo']} | {livro['ano']} | {livro['paginas']} | {livro['isbn']} | {livro['autor']['nome']} | {livro['categoria']['nome']} | {livro['editora']['nome']} | {livro['resumo']}")
             elif opcao_livro == '5':
                 if tabela_livros == []:
                     print('Não existem livros cadastrados.')
@@ -291,6 +316,8 @@ while True:  # Loop infinito
                 print('Livro editado com sucesso!')
             else:
                 print('Opção inválida! Tente novamente.')
+
+            input('\nDigite <ENTER> para continuar...')
     else:
         print('Opção inválida! Tente novamente.')
         input('\nDigite <ENTER> para continuar...')
