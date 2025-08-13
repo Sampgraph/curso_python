@@ -13,6 +13,15 @@
 | Operador | Exemplo | É o mesmo que | Comentários |
 | -------- | ------- | ------------- | ----------- |
 | = | x = 'Olá!' | x = 'Olá!' | Atribuição de valores |
+| += | y += 10 | y = y + 10| A variável y precisa ter sido instanciada anteriormente |
+| -= | z -= 20 | z = z - 20 | A variável z precisa ter sido instancianda anteriormente |
+
+# Operadores Lógicos
+| Operador | Descrição | Exemplo |
+| -------- | --------- | ------- |
+| and | Retorna True se todas as afirmações forem verdadeiras | `lista1 == [] and lista2 == []` |
+| or  | Retorna True se uma das afirmações forem verdadeiras | `lista1 == [] or lista2 == []` |
+
 
 # Tipos de dados nativos
 
