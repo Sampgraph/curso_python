@@ -47,33 +47,28 @@ def bloco_categoria():
     Bloco da CATEGORIA
 
     """
-    while True:
-        print(menu_categorias)
-        opcao_categoria = input('Digite a opção: ')
-        if opcao_categoria == '0':
-            return  # Sai da função e volta ao menu principal
-        elif opcao_categoria == '1':
-            if tabela_categorias == []:
-                print('Não existem categorias cadastradas.')
-                input('\nDigite <ENTER> para continuar...\n')
-                continue
-
+    print(menu_categorias)
+    opcao_categoria = input('Digite a opção: ')
+    if opcao_categoria == '0':
+        return  # Sai da função e volta ao menu principal
+    elif opcao_categoria == '1':
+        if tabela_categorias == []:
+            print('Não existem categorias cadastradas.')
+        else:
             print('ID | Nome')
             for index, categoria in enumerate(tabela_categorias):
                 print(f"{index + 1} | {categoria['nome']}")
-        elif opcao_categoria == '2':
-            nome_categoria = input('Digite o nome da categoria: ')
-            nova_categoria = {
-                'nome': nome_categoria
-            }
-            tabela_categorias.append(nova_categoria)
-            print('Categoria cadastrada com sucesso!')
-        elif opcao_categoria == '3':
-            if tabela_categorias == []:
-                print('Não existem categorias cadastradas.')
-                input('\nDigite <ENTER> para continuar...\n')
-                continue
-
+    elif opcao_categoria == '2':
+        nome_categoria = input('Digite o nome da categoria: ')
+        nova_categoria = {
+            'nome': nome_categoria
+        }
+        tabela_categorias.append(nova_categoria)
+        print('Categoria cadastrada com sucesso!')
+    elif opcao_categoria == '3':
+        if tabela_categorias == []:
+            print('Não existem categorias cadastradas.')
+        else:
             while True:
                 try:
                     id_categoria = int(input('Digite o ID da categoria a ser excluída: '))
@@ -85,12 +80,10 @@ def bloco_categoria():
                     break
 
             print('Categoria excluída com sucesso!')
-        elif opcao_categoria == '4':
-            if tabela_categorias == []:
-                print('Não existem categorias cadastradas.')
-                input('\nDigite <ENTER> para continuar...\n')
-                continue
-
+    elif opcao_categoria == '4':
+        if tabela_categorias == []:
+            print('Não existem categorias cadastradas.')
+        else:
             while True:
                 try:
                     id_categoria = int(input('Digite o ID do categoria a ser consultada: '))
@@ -103,12 +96,10 @@ def bloco_categoria():
 
             print('ID | Nome')
             print(f"{id_categoria} | {categoria['nome']}")
-        elif opcao_categoria == '5':
-            if tabela_categorias == []:
-                print('Não existem categorias cadastradas.')
-                input('\nDigite <ENTER> para continuar...\n')
-                continue
-
+    elif opcao_categoria == '5':
+        if tabela_categorias == []:
+            print('Não existem categorias cadastradas.')
+        else:
             while True:
                 try:
                     id_categoria = int(input('Digite o ID da categoria a ser editada: '))
@@ -122,10 +113,11 @@ def bloco_categoria():
             nome_categoria = input('Digite o nome da categoria: ')
             categoria['nome'] = nome_categoria
             print('Categoria editada com sucesso!')
-        else:
-            print('Opção inválida!')
+    else:
+        print('Opção inválida!')
 
-        input('\nDigite <ENTER> para continuar...\n')
+    input('\nDigite <ENTER> para continuar...\n')
+    bloco_categoria()  # Chama a função recursivamente para manter o menu ativo
 
 
 def bloco_editora():
@@ -134,37 +126,32 @@ def bloco_editora():
     Bloco da EDITORA
 
     """
-    while True:
-        print(menu_editoras)
-        opcao_editora = input('Digite a opção: ')
-        if opcao_editora == '0':
-            return  # Sai da função e volta ao menu principal
-        elif opcao_editora == '1':
-            if tabela_editoras == []:
-                print('Não existem editoras cadastradas.')
-                input('\nDigite <ENTER> para continuar...\n')
-                continue
-
+    print(menu_editoras)
+    opcao_editora = input('Digite a opção: ')
+    if opcao_editora == '0':
+        return  # Sai da função e volta ao menu principal
+    elif opcao_editora == '1':
+        if tabela_editoras == []:
+            print('Não existem editoras cadastradas.')
+        else:
             print('ID | Nome | Endereço | Telefone')
             for index, editora in enumerate(tabela_editoras):
                 print(f"{index + 1} | {editora['nome']} | {editora['endereco']} | {editora['telefone']}")
-        elif opcao_editora == '2':
-            nome_editora = input('Digite o nome da editora: ')
-            endereco_editora = input('Digite o endereço da editora: ')
-            telefone_editora = input('Digite o telefone da editora: ')
-            nova_editora = {
-                'nome': nome_editora,
-                'endereco': endereco_editora,
-                'telefone': telefone_editora
-            }
-            tabela_editoras.append(nova_editora)
-            print('Editora cadastrada com sucesso!')
-        elif opcao_editora == '3':
-            if tabela_editoras == []:
-                print('Não existem editoras cadastradas.')
-                input('\nDigite <ENTER> para continuar...\n')
-                continue
-
+    elif opcao_editora == '2':
+        nome_editora = input('Digite o nome da editora: ')
+        endereco_editora = input('Digite o endereço da editora: ')
+        telefone_editora = input('Digite o telefone da editora: ')
+        nova_editora = {
+            'nome': nome_editora,
+            'endereco': endereco_editora,
+            'telefone': telefone_editora
+        }
+        tabela_editoras.append(nova_editora)
+        print('Editora cadastrada com sucesso!')
+    elif opcao_editora == '3':
+        if tabela_editoras == []:
+            print('Não existem editoras cadastradas.')
+        else:
             while True:
                 try:
                     id_editora = int(input('Digite o ID da editora a ser excluída: '))
@@ -175,12 +162,10 @@ def bloco_editora():
                 else:
                     break
             print('Editora excluída com sucesso!')
-        elif opcao_editora == '4':
-            if tabela_editoras == []:
-                print('Não existem editoras cadastradas.')
-                input('\nDigite <ENTER> para continuar...\n')
-                continue
-
+    elif opcao_editora == '4':
+        if tabela_editoras == []:
+            print('Não existem editoras cadastradas.')
+        else:
             while True:
                 try:
                     id_editora = int(input('Digite o ID da editora a ser consultada: '))
@@ -193,12 +178,10 @@ def bloco_editora():
 
             print('ID | Nome | Endereço | Telefone')
             print(f"{id_editora} | {editora['nome']} | {editora['endereco']} | {editora['telefone']}")
-        elif opcao_editora == '5':
-            if tabela_editoras == []:
-                print('Não existem editoras cadastradas.')
-                input('\nDigite <ENTER> para continuar...\n')
-                continue
-
+    elif opcao_editora == '5':
+        if tabela_editoras == []:
+            print('Não existem editoras cadastradas.')
+        else:
             while True:
                 try:
                     id_editora = int(input('Digite o ID da editora a ser editada: '))
@@ -218,10 +201,11 @@ def bloco_editora():
             editora['telefone'] = telefone_editora
 
             print('Editora editada com sucesso!')
-        else:
-            print('Opção inválida!')
+    else:
+        print('Opção inválida!')
 
-        input('\nDigite <ENTER> para continuar...\n')
+    input('\nDigite <ENTER> para continuar...\n')
+    bloco_editora()  # Chama a função recursivamente para manter o menu ativo
 
 
 def bloco_autor():
@@ -230,39 +214,34 @@ def bloco_autor():
     Bloco do AUTOR
 
     """
-    while True:
-        print(menu_autores)
-        opcao_autor = input('[Autores] Digite a opção desejada: ')
-        if opcao_autor == '0':
-            return  # Sai da função e volta ao menu principal
-        if opcao_autor == '1':
-            if tabela_autores == []:
-                print('Não existem autores cadastrados.')
-                input('\nDigite <ENTER> para continuar...\n')
-                continue
-
+    print(menu_autores)
+    opcao_autor = input('[Autores] Digite a opção desejada: ')
+    if opcao_autor == '0':
+        return  # Sai da função e volta ao menu principal
+    if opcao_autor == '1':
+        if tabela_autores == []:
+            print('Não existem autores cadastrados.')
+        else:
             print('ID | Nome | Email | Telefone')
             for index, autor in enumerate(tabela_autores, start=1):
                 print(f"{index} | {autor['nome']} | {autor['email']} | {autor['telefone']}")
-        elif opcao_autor == '2':
-            nome_autor = input('Digite o nome do autor: ')
-            email_autor = input('Digite o email do autor: ')
-            biografia_autor = input('Digite a biografia do autor: ')
-            telefone_autor = input('Digite o telefone do autor: ')
-            novo_autor = {
-                'nome': nome_autor,
-                'email': email_autor,
-                'telefone': telefone_autor,
-                'biografia': biografia_autor
-            }
-            tabela_autores.append(novo_autor)
-            print('Autor cadastrado com sucesso!')
-        elif opcao_autor == '3':
-            if tabela_autores == []:
-                print('Não existem autores cadastrados.')
-                input('\nDigite <ENTER> para continuar...\n')
-                continue
-
+    elif opcao_autor == '2':
+        nome_autor = input('Digite o nome do autor: ')
+        email_autor = input('Digite o email do autor: ')
+        biografia_autor = input('Digite a biografia do autor: ')
+        telefone_autor = input('Digite o telefone do autor: ')
+        novo_autor = {
+            'nome': nome_autor,
+            'email': email_autor,
+            'telefone': telefone_autor,
+            'biografia': biografia_autor
+        }
+        tabela_autores.append(novo_autor)
+        print('Autor cadastrado com sucesso!')
+    elif opcao_autor == '3':
+        if tabela_autores == []:
+            print('Não existem autores cadastrados.')
+        else:
             while True:
                 try:
                     id_autor = int(input('Digite o ID do autor a ser excluído: '))  # cast = converte de str para int
@@ -274,12 +253,10 @@ def bloco_autor():
                     break
 
             print('Autor excluído com sucesso!')
-        elif opcao_autor == '4':
-            if tabela_autores == []:
-                print('Não existem autores cadastrados.')
-                input('\nDigite <ENTER> para continuar...\n')
-                continue
-
+    elif opcao_autor == '4':
+        if tabela_autores == []:
+            print('Não existem autores cadastrados.')
+        else:
             while True:
                 try:
                     id_autor = int(input('Digite o ID do autor a ser buscado: '))  # cast = converte de str para int
@@ -292,12 +269,10 @@ def bloco_autor():
 
             print('ID | Nome | Email | Telefone | Biografia')
             print(f"{id_autor} | {autor_encontrado['nome']} | {autor_encontrado['email']}  | {autor_encontrado['telefone']} | {autor_encontrado['biografia']}")
-        elif opcao_autor == '5':
-            if tabela_autores == []:
-                print('Não existem autores cadastrados.')
-                input('\nDigite <ENTER> para continuar...\n')
-                continue
-
+    elif opcao_autor == '5':
+        if tabela_autores == []:
+            print('Não existem autores cadastrados.')
+        else:
             while True:
                 try:
                     id_autor = int(input('Digite o ID do autor a ser buscado: '))  # cast = converte de str para int
@@ -317,10 +292,11 @@ def bloco_autor():
             autor_editado['telefone'] = telefone_autor
             autor_editado['biografia'] = biografia_autor
             print('Autor editado com sucesso!')
-        else:
-            print('Opção inválida! Tente novamente.')
+    else:
+        print('Opção inválida! Tente novamente.')
 
-        input('\nDigite <ENTER> para continuar...')
+    input('\nDigite <ENTER> para continuar...')
+    bloco_autor()  # Chama a função recursivamente para manter o menu ativo
 
 
 def bloco_livro():
@@ -329,26 +305,21 @@ def bloco_livro():
     Bloco do LIVRO
 
     """
-    while True:
-        print(menu_livros)
-        opcao_livro = input('Digite a opção: ')
-        if opcao_livro == '0':
-            return  # Sai da função e volta ao menu principal
-        elif opcao_livro == '1':
-            if tabela_livros == []:
-                print('Não existem livros cadastrados.')
-                input('\nDigite <ENTER> para continuar...\n')
-                continue
-
+    print(menu_livros)
+    opcao_livro = input('Digite a opção: ')
+    if opcao_livro == '0':
+        return  # Sai da função e volta ao menu principal
+    elif opcao_livro == '1':
+        if tabela_livros == []:
+            print('Não existem livros cadastrados.')
+        else:
             print('ID | Título | Ano | Páginas | ISBN | Autor | Categoria | Editora')
             for index, livro in enumerate(tabela_livros):
                 print(f"{index + 1} | {livro['titulo']} | {livro['ano']} | {livro['paginas']} | {livro['isbn']} | {livro['autor']['nome']} | {livro['categoria']['nome']} | {livro['editora']['nome']}")
-        elif opcao_livro == '2':
-            if tabela_autores == [] or tabela_editoras == [] or tabela_categorias == []:
-                print('É necessário ter pelo menos um autor, uma editora e uma categoria cadastrados para adicionar um livro.')
-                input('\nDigite <ENTER> para continuar...\n')
-                continue
-
+    elif opcao_livro == '2':
+        if tabela_autores == [] or tabela_editoras == [] or tabela_categorias == []:
+            print('É necessário ter pelo menos um autor, uma editora e uma categoria cadastrados para adicionar um livro.')
+        else:
             titulo = input('Digite o título do livro: ')
             ano = input('Digite o ano de publicação do livro: ')
             paginas = input('Digite o número de páginas do livro: ')
@@ -395,12 +366,10 @@ def bloco_livro():
             }
             tabela_livros.append(novo_livro)
             print('Livro cadastrado com sucesso!')
-        elif opcao_livro == '3':
-            if tabela_livros == []:
-                print('Não existem livros cadastrados.')
-                input('\nDigite <ENTER> para continuar...\n')
-                continue
-
+    elif opcao_livro == '3':
+        if tabela_livros == []:
+            print('Não existem livros cadastrados.')
+        else:
             while True:
                 try:
                     id_livro = int(input('Digite o ID do livro a ser excluído: '))
@@ -412,12 +381,10 @@ def bloco_livro():
                     break
 
             print('Livro excluído com sucesso!')
-        elif opcao_livro == '4':
-            if tabela_livros == []:
-                print('Não existem livros cadastrados.')
-                input('\nDigite <ENTER> para continuar...\n')
-                continue
-
+    elif opcao_livro == '4':
+        if tabela_livros == []:
+            print('Não existem livros cadastrados.')
+        else:
             while True:
                 try:
                     id_livro = int(input('Digite o ID do livro a ser consultado: '))
@@ -430,12 +397,10 @@ def bloco_livro():
 
             print('ID | Título | Ano | Páginas | ISBN | Autor | Categoria | Editora | Resumo')
             print(f"{id_livro} | {livro['titulo']} | {livro['ano']} | {livro['paginas']} | {livro['isbn']} | {livro['autor']['nome']} | {livro['categoria']['nome']} | {livro['editora']['nome']} | {livro['resumo']}")
-        elif opcao_livro == '5':
-            if tabela_livros == []:
-                print('Não existem livros cadastrados.')
-                input('\nDigite <ENTER> para continuar...\n')
-                continue
-
+    elif opcao_livro == '5':
+        if tabela_livros == []:
+            print('Não existem livros cadastrados.')
+        else:
             while True:
                 try:
                     id_livro = int(input('Digite o ID do livro a ser editado: '))
@@ -448,10 +413,11 @@ def bloco_livro():
 
             titulo_livro = input('Digite o título do livro: ')
             print('Livro editado com sucesso!')
-        else:
-            print('Opção inválida! Tente novamente.')
+    else:
+        print('Opção inválida! Tente novamente.')
 
-        input('\nDigite <ENTER> para continuar...')
+    input('\nDigite <ENTER> para continuar...')
+    bloco_livro()  # Chama a função recursivamente para manter o menu ativo
 
 
 while True:  # Loop infinito
