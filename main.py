@@ -51,7 +51,7 @@ def bloco_categoria():
         print(menu_categorias)
         opcao_categoria = input('Digite a opção: ')
         if opcao_categoria == '0':
-            break
+            return  # Sai da função e volta ao menu principal
         elif opcao_categoria == '1':
             if tabela_categorias == []:
                 print('Não existem categorias cadastradas.')
@@ -138,7 +138,7 @@ def bloco_editora():
         print(menu_editoras)
         opcao_editora = input('Digite a opção: ')
         if opcao_editora == '0':
-            break
+            return  # Sai da função e volta ao menu principal
         elif opcao_editora == '1':
             if tabela_editoras == []:
                 print('Não existem editoras cadastradas.')
@@ -234,7 +234,7 @@ def bloco_autor():
         print(menu_autores)
         opcao_autor = input('[Autores] Digite a opção desejada: ')
         if opcao_autor == '0':
-            break  # Sair do loop interno
+            return  # Sai da função e volta ao menu principal
         if opcao_autor == '1':
             if tabela_autores == []:
                 print('Não existem autores cadastrados.')
@@ -333,7 +333,7 @@ def bloco_livro():
         print(menu_livros)
         opcao_livro = input('Digite a opção: ')
         if opcao_livro == '0':
-            break
+            return  # Sai da função e volta ao menu principal
         elif opcao_livro == '1':
             if tabela_livros == []:
                 print('Não existem livros cadastrados.')
