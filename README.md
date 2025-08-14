@@ -63,6 +63,18 @@
 
     Saída ou exibição de dados.
 
+- help()
+
+    Exibe a ajuda da função desejada.
+
+- id()
+
+    Retorna a identidade de um objeto.
+
+- len()
+
+    Retorna o número de itens no container (coleção de dados).
+
 
 # Estrutura de decisão: `if`
 ## if condition
@@ -116,7 +128,7 @@ Estruturas de Dados são uma maneira de organizar dados para que eles possam ser
 | [3, 1, 2].sort(reverse=True) | [3, 2, 1] |
 | [1, 2, 3] + [4, 5] | [1, 2, 3, 4, 5] |
 | [1, 2, 3] * 2 | [1, 2, 3, 1, 2, 3] |
-| [1, 2, 3][1:] | |
-| [1, 2, 3][:2] | |
-| [1, 2, 3][::-1] | |
+| [1, 2, 3][1:] | [2, 3] |
+| [1, 2, 3][:2] | [1, 2] |
+| [1, 2, 3][::-1] | [3, 2, 1] |
 | len([1, 2, 3]) | 3 |
