@@ -41,6 +41,35 @@ tabela_editoras = []
 tabela_livros = []
 
 
+def is_email_valid(email):
+    if not isinstance(email, str):
+        return False
+
+    if '@' not in email or '.' not in email:
+        return False
+
+    partes = email.split('@')  # desmembrando a string
+    if len(partes) != 2:
+        return False
+
+    username = partes[0]
+    dominio = partes[1]
+
+    if not username or not dominio:
+        return False
+
+    if '.' not in dominio:
+        return False
+
+    if dominio.startswith('.') or dominio.endswith('.'):
+        return False
+
+    if ' ' in username or ' ' in dominio:
+        return False
+
+    return True
+
+
 def bloco_categoria():
     """
 
@@ -227,7 +256,12 @@ def bloco_autor():
                 print(f"{index} | {autor['nome']} | {autor['email']} | {autor['telefone']}")
     elif opcao_autor == '2':
         nome_autor = input('Digite o nome do autor: ')
+
         email_autor = input('Digite o email do autor: ')
+        while not is_email_valid(email_autor):
+            print('Email inválido. Tente novamente.')
+            email_autor = input('Digite o email do autor: ')
+
         biografia_autor = input('Digite a biografia do autor: ')
         telefone_autor = input('Digite o telefone do autor: ')
         novo_autor = {
