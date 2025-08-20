@@ -132,3 +132,24 @@ Estruturas de Dados são uma maneira de organizar dados para que eles possam ser
 | [1, 2, 3][:2] | [1, 2] |
 | [1, 2, 3][::-1] | [3, 2, 1] |
 | len([1, 2, 3]) | 3 |
+
+
+## Dicionários (`dict`)
+
+### Métodos de um dicionário
+
+| Comando | Resultado |
+| ----- | ---- |
+| {'a': 1}.clear() | {} |
+| {'a': 1}.copy() | {'a': 1} |
+| {'a': 1}.get('a') | 1 |
+| {'a': 1}.get('b') | None |
+| {'a': 1}.items() | [('a', 1)] |
+| {'a': 1}.keys() | ['a'] |
+| {'a': 1}.values() | [1] |
+| {'a': 1}.pop('a') | 1 |
+| {'a': 1}.popitem() | ('a', 1) |
+| {'a': 1}.update({'b': 2}) | {'a': 1, 'b': 2} |
+
+
+## Tuplas (`tuple`)
