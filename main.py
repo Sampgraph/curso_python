@@ -41,11 +41,22 @@ tabela_editoras = []
 tabela_livros = []
 
 
+class Autor:
+    def __init__(self, n, e, t):  # Método construtor
+        self.nome = n
+        self.email = e
+        self.telefone = t
+        self.biografia = None
+
+
 def is_email_valid(email):
     if not isinstance(email, str):
         return False
 
     if '@' not in email or '.' not in email:
+        return False
+
+    if not email.isascii():
         return False
 
     partes = email.split('@')  # desmembrando a string
@@ -66,6 +77,7 @@ def is_email_valid(email):
 
     if ' ' in username or ' ' in dominio:
         return False
+
 
     return True
 
@@ -253,7 +265,7 @@ def bloco_autor():
         else:
             print('ID | Nome | Email | Telefone')
             for index, autor in enumerate(tabela_autores, start=1):
-                print(f"{index} | {autor['nome']} | {autor['email']} | {autor['telefone']}")
+                print(f"{index} | {autor.nome} | {autor.email} | {autor.telefone}")
     elif opcao_autor == '2':
         nome_autor = input('Digite o nome do autor: ')
 
@@ -264,12 +276,8 @@ def bloco_autor():
 
         biografia_autor = input('Digite a biografia do autor: ')
         telefone_autor = input('Digite o telefone do autor: ')
-        novo_autor = {
-            'nome': nome_autor,
-            'email': email_autor,
-            'telefone': telefone_autor,
-            'biografia': biografia_autor
-        }
+        novo_autor = Autor(nome_autor, email_autor, telefone_autor)
+        novo_autor.biografia = biografia_autor
         tabela_autores.append(novo_autor)
         print('Autor cadastrado com sucesso!')
     elif opcao_autor == '3':
@@ -302,7 +310,7 @@ def bloco_autor():
                     break
 
             print('ID | Nome | Email | Telefone | Biografia')
-            print(f"{id_autor} | {autor_encontrado['nome']} | {autor_encontrado['email']}  | {autor_encontrado['telefone']} | {autor_encontrado['biografia']}")
+            print(f"{id_autor} | {autor_encontrado.nome} | {autor_encontrado.email}  | {autor_encontrado.telefone} | {autor_encontrado.biografia}")
     elif opcao_autor == '5':
         if tabela_autores == []:
             print('Não existem autores cadastrados.')
@@ -319,12 +327,16 @@ def bloco_autor():
 
             nome_autor = input('Digite o nome do autor: ')
             email_autor = input('Digite o email do autor: ')
+            while not is_email_valid(email_autor):
+                print('Email inválido. Tente novamente.')
+                email_autor = input('Digite o email do autor: ')
+
             biografia_autor = input('Digite a biografia do autor: ')
             telefone_autor = input('Digite o telefone do autor: ')
-            autor_editado['nome'] = nome_autor
-            autor_editado['email'] = email_autor
-            autor_editado['telefone'] = telefone_autor
-            autor_editado['biografia'] = biografia_autor
+            autor_editado.nome = nome_autor
+            autor_editado.email = email_autor
+            autor_editado.telefone = telefone_autor
+            autor_editado.biografia = biografia_autor
             print('Autor editado com sucesso!')
     else:
         print('Opção inválida! Tente novamente.')
