@@ -1,0 +1,67 @@
+def is_email_valid(email):
+    if not isinstance(email, str):
+        return False
+
+    if '@' not in email or '.' not in email:
+        return False
+
+    partes = email.split('@')  # desmembrando a string
+    if len(partes) != 2:
+        return False
+
+    username = partes[0]
+    dominio = partes[1]
+
+    if not username or not dominio:
+        return False
+
+    if '.' not in dominio:
+        return False
+
+    if dominio.startswith('.') or dominio.endswith('.'):
+        return False
+
+    if ' ' in username or ' ' in dominio:
+        return False
+
+    return True
+
+
+class Autor:
+    def __init__(self, n, t):  # Método construtor
+        self.nome = n
+        self._email = None  # Convenção para definir um atributo como 'protegido'.
+        self.telefone = t
+        self.biografia = None
+
+    def get_email(self):
+        return self._email
+
+    def set_email(self, e):
+        if is_email_valid(e):
+            self._email = e
+            return True
+        else:
+            return False
+
+
+
+a1 = Autor('Machado de assis', '1234-5678')
+
+e = input('Digite o email: ')
+a1._email = e  # Apesar de o Python aceitar, deveria ser evitado.
+
+print(a1._email)  # Apesar de o Python aceitar, deveria ser evitado.
+
+
+# Modo correto de acordo com a convenção:
+
+a2 = Autor('Cecília', '9876-5432')
+
+email = input('Digite o email: ')
+while not a2.set_email(email):
+    print('Email inválido. Tente novamente.')
+    email = input('Digite o email: ')
+
+print(a2.get_email())
+
