@@ -42,11 +42,47 @@ tabela_livros = []
 
 
 class Autor:
-    def __init__(self, n, e, t):  # Método construtor
+    def __init__(self, n, t, b=None):  # Método construtor
         self.nome = n
-        self.email = e
+        self.__email = None  # Convenção para definir um atributo como 'protegido'.
         self.telefone = t
-        self.biografia = None
+        self.biografia = b
+
+    @property  # Decorator ou decoradores
+    def nome(self):
+        return self.__nome
+
+    @nome.setter  # Decorator ou decoradores
+    def nome(self, n):
+        self.__nome = n.title()
+
+    @property  # Decorator ou decoradores
+    def email(self):
+        return self.__email
+
+    @email.setter  # Decorator ou decoradores
+    def email(self, e):
+        if is_email_valid(e):
+            self.__email = e.lower()
+            return
+        else:
+            raise ValueError('Email inválido')
+
+    @property
+    def telefone(self):
+        return self.__telefone
+
+    @telefone.setter
+    def telefone(self, t):
+        self.__telefone = t
+
+    @property
+    def biografia(self):
+        return self.__biografia
+
+    @biografia.setter
+    def biografia(self, b):
+        self.__biografia = b
 
 
 def is_email_valid(email):
@@ -268,16 +304,19 @@ def bloco_autor():
                 print(f"{index} | {autor.nome} | {autor.email} | {autor.telefone}")
     elif opcao_autor == '2':
         nome_autor = input('Digite o nome do autor: ')
-
-        email_autor = input('Digite o email do autor: ')
-        while not is_email_valid(email_autor):
-            print('Email inválido. Tente novamente.')
-            email_autor = input('Digite o email do autor: ')
-
         biografia_autor = input('Digite a biografia do autor: ')
         telefone_autor = input('Digite o telefone do autor: ')
-        novo_autor = Autor(nome_autor, email_autor, telefone_autor)
-        novo_autor.biografia = biografia_autor
+        novo_autor = Autor(nome_autor, telefone_autor, biografia_autor)
+        while True:
+            try:
+                email_autor = input('Digite o email do autor: ')
+                novo_autor.email = email_autor
+            except:
+                print('Email inválido. Tente novamente.')
+            else:
+                break  # Não ocorreu nenhuma exceção, então encerra o 'while'.
+
+        novo_autor.email = email_autor
         tabela_autores.append(novo_autor)
         print('Autor cadastrado com sucesso!')
     elif opcao_autor == '3':
@@ -326,15 +365,18 @@ def bloco_autor():
                     break
 
             nome_autor = input('Digite o nome do autor: ')
-            email_autor = input('Digite o email do autor: ')
-            while not is_email_valid(email_autor):
-                print('Email inválido. Tente novamente.')
-                email_autor = input('Digite o email do autor: ')
-
             biografia_autor = input('Digite a biografia do autor: ')
             telefone_autor = input('Digite o telefone do autor: ')
+            while True:
+                try:
+                    email_autor = input('Digite o email do autor: ')
+                    autor_editado.email = email_autor
+                except:
+                    print('Email inválido. Tente novamente.')
+                else:
+                    break  # Não ocorreu nenhuma exceção, então encerra o 'while'.
+
             autor_editado.nome = nome_autor
-            autor_editado.email = email_autor
             autor_editado.telefone = telefone_autor
             autor_editado.biografia = biografia_autor
             print('Autor editado com sucesso!')
