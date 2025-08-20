@@ -50,6 +50,9 @@ class Autor:
         self.telefone = t
         self.biografia = b
 
+    def __str__(self):
+        return f"{self.__nome} | {self.__email} | {self.__telefone}"
+
     @property  # Decorator ou decoradores
     def nome(self):
         return self.__nome
@@ -303,7 +306,7 @@ def bloco_autor():
         else:
             print('ID | Nome | Email | Telefone')
             for index, autor in enumerate(tabela_autores, start=1):
-                print(f"{index} | {autor.nome} | {autor.email} | {autor.telefone}")
+                print(f"{index} | {autor} ")
     elif opcao_autor == '2':
         nome_autor = input('Digite o nome do autor: ')
         biografia_autor = input('Digite a biografia do autor: ')
@@ -351,7 +354,7 @@ def bloco_autor():
                     break
 
             print('ID | Nome | Email | Telefone | Biografia')
-            print(f"{id_autor} | {autor_encontrado.nome} | {autor_encontrado.email}  | {autor_encontrado.telefone} | {autor_encontrado.biografia}")
+            print(f"{id_autor} | {autor_encontrado} | {autor_encontrado.biografia}")
     elif opcao_autor == '5':
         if tabela_autores == []:
             print('Não existem autores cadastrados.')
