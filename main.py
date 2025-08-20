@@ -42,6 +42,8 @@ tabela_livros = []
 
 
 class Autor:
+    __slots__ = ['__nome', '__email', '__telefone', '__biografia']
+
     def __init__(self, n, t, b=None):  # Método construtor
         self.nome = n
         self.__email = None  # Convenção para definir um atributo como 'protegido'.
