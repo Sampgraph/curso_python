@@ -44,29 +44,29 @@ tabela_livros = []
 class Autor:
     __slots__ = ['__nome', '__email', '__telefone', '__biografia']
 
-    def __init__(self, n, t, b=None):  # Método construtor
+    def __init__(self, n: str, t: str, b: str =None) -> None:  # Método construtor
         self.nome = n
         self.__email = None  # Convenção para definir um atributo como 'protegido'.
         self.telefone = t
         self.biografia = b
 
-    def __str__(self):
+    def __str__(self) -> str:
         return f"{self.__nome} | {self.__email} | {self.__telefone}"
 
     @property  # Decorator ou decoradores
-    def nome(self):
+    def nome(self) -> str:
         return self.__nome
 
     @nome.setter  # Decorator ou decoradores
-    def nome(self, n):
+    def nome(self, n: str) -> None:
         self.__nome = n.title()
 
     @property  # Decorator ou decoradores
-    def email(self):
+    def email(self) -> str:
         return self.__email
 
     @email.setter  # Decorator ou decoradores
-    def email(self, e):
+    def email(self, e: str) -> None:
         if is_email_valid(e):
             self.__email = e.lower()
             return
@@ -74,23 +74,23 @@ class Autor:
             raise ValueError('Email inválido')
 
     @property
-    def telefone(self):
+    def telefone(self) -> str:
         return self.__telefone
 
     @telefone.setter
-    def telefone(self, t):
+    def telefone(self, t: str) -> None:
         self.__telefone = t
 
     @property
-    def biografia(self):
+    def biografia(self) -> str:
         return self.__biografia
 
     @biografia.setter
-    def biografia(self, b):
+    def biografia(self, b: str) -> None:
         self.__biografia = b
 
 
-def is_email_valid(email):
+def is_email_valid(email: str) -> bool:
     if not isinstance(email, str):
         return False
 
@@ -119,11 +119,10 @@ def is_email_valid(email):
     if ' ' in username or ' ' in dominio:
         return False
 
-
     return True
 
 
-def bloco_categoria():
+def bloco_categoria() -> None:
     """
 
     Bloco da CATEGORIA
@@ -202,7 +201,7 @@ def bloco_categoria():
     bloco_categoria()  # Chama a função recursivamente para manter o menu ativo
 
 
-def bloco_editora():
+def bloco_editora() -> None:
     """
 
     Bloco da EDITORA
@@ -290,7 +289,7 @@ def bloco_editora():
     bloco_editora()  # Chama a função recursivamente para manter o menu ativo
 
 
-def bloco_autor():
+def bloco_autor() -> None:
     """
 
     Bloco do AUTOR
@@ -392,7 +391,7 @@ def bloco_autor():
     bloco_autor()  # Chama a função recursivamente para manter o menu ativo
 
 
-def bloco_livro():
+def bloco_livro() -> None:
     """
 
     Bloco do LIVRO
