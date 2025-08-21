@@ -1,8 +1,9 @@
 from dao.autor_dao import AutorDAO
 from model.autor import Autor
+from model.utils import GREEN, RED, RESET
 
 
-menu_autores = '''[Autores] Escolha uma das seguintes opções:
+menu_autores = f'''{GREEN}[Autores] Escolha uma das seguintes opções:{RESET}
 1 - Listar todos os autores
 2 - Adicionar novo autor
 3 - Excluir autor
@@ -32,7 +33,7 @@ class AutorService:
         elif opcao_autor == '5':
             self.editar()
         else:
-            print('Opção inválida! Tente novamente.')
+            print(f'{RED}Opção inválida! Tente novamente.{RESET}')
 
         input('\nDigite <ENTER> para continuar...')
         self.menu()  # Chama a função recursivamente para manter o menu ativo
@@ -55,7 +56,7 @@ class AutorService:
                 email_autor = input('Digite o email do autor: ')
                 novo_autor.email = email_autor
             except:
-                print('Email inválido. Tente novamente.')
+                print(f'{RED}Email inválido. Tente novamente.{RESET}')
             else:
                 break  # Não ocorreu nenhuma exceção, então encerra o 'while'.
 
@@ -72,7 +73,7 @@ class AutorService:
                     id_autor = int(input('Digite o ID do autor a ser excluído: '))  # cast = converte de str para int
                     autor_dao.delete(id_autor)
                 except:
-                    print('ID inválido. Tente novamente.')
+                    print(f'{RED}ID inválido. Tente novamente.{RESET}')
                     continue
                 else:
                     break
@@ -88,7 +89,7 @@ class AutorService:
                     id_autor = int(input('Digite o ID do autor a ser buscado: '))  # cast = converte de str para int
                     autor_encontrado = autor_dao.read(id_autor)
                 except:
-                    print('ID inválido. Tente novamente.')
+                    print(f'{RED}ID inválido. Tente novamente.{RESET}')
                     continue
                 else:
                     break
@@ -105,7 +106,7 @@ class AutorService:
                     id_autor = int(input('Digite o ID do autor a ser alterado: '))  # cast = converte de str para int
                     autor_editado = autor_dao.read(id_autor)
                 except:
-                    print('ID inválido. Tente novamente.')
+                    print(f'{RED}ID inválido. Tente novamente.{RESET}')
                     continue
                 else:
                     break
@@ -118,7 +119,7 @@ class AutorService:
                     email_autor = input('Digite o email do autor: ')
                     autor_editado.email = email_autor
                 except:
-                    print('Email inválido. Tente novamente.')
+                    print(f'{RED}Email inválido. Tente novamente.{RESET}')
                 else:
                     break  # Não ocorreu nenhuma exceção, então encerra o 'while'.
 

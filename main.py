@@ -1,28 +1,29 @@
 from model.autor import Autor
 from service.autor_service import AutorService
+from model.utils import BLUE, GREEN, RESET
 
-menu_principal = '''[Menu Principal] Escolha uma das seguintes opções:
+menu_principal = f'''{BLUE}[Menu Principal] Escolha uma das seguintes opções:{RESET}
 1 - Categorias
 2 - Editoras
 3 - Autores
 4 - Livros
 0 - Sair do programa'''
 
-menu_categorias = '''[Categorias] Escolha uma das seguintes opções:
+menu_categorias = f'''{GREEN}[Categorias] Escolha uma das seguintes opções:{RESET}
 1 - Listar toda as categorias
 2 - Adicionar nova categoria
 3 - Excluir categoria
 4 - Ver categoria por Id
 0 - Voltar ao menu anterior'''
 
-menu_editoras = '''[Editoras] Escolha uma das seguintes opções:
+menu_editoras = f'''{GREEN}[Editoras] Escolha uma das seguintes opções:{RESET}
 1 - Listar todas as editoras
 2 - Adicionar nova editora
 3 - Excluir editora
 4 - Ver editora por Id
 0 - Voltar ao menu anterior'''
 
-menu_livros = '''[Livros] Escolha uma das seguintes opções:
+menu_livros = f'''{GREEN}[Livros] Escolha uma das seguintes opções:{RESET}
 1 - Listar todos os livros
 2 - Adicionar novo livro
 3 - Excluir livro
