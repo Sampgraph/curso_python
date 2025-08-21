@@ -10,15 +10,28 @@ class AutorDAO:
         AutorDAO.tabela_autores.append(autor)
 
     def read(self, id: int):
-        return AutorDAO.tabela_autores[id]
+        for autor in AutorDAO.tabela_autores:
+            if autor.id == id:
+                return autor
+
+        # Se chegar até nessa linha significa que o autor não foi encontrado.
+        raise IndexError('Autor não encontrado')
 
     def update(self, id: int, autor: Autor):
-        AutorDAO.tabela_autores[id] = autor
+        for index, autor in enumerate(AutorDAO.tabela_autores):
+            if autor.id == id:
+                AutorDAO.tabela_autores[index] = autor
+                return
 
     def delete(self, id: int):
-        AutorDAO.tabela_autores.pop(id)
+        for autor in AutorDAO.tabela_autores:
+            if autor.id == id:
+                AutorDAO.tabela_autores.remove(autor)
+                return
+
+        # Se chegar até nessa linha significa que o autor não foi encontrado.
+        raise IndexError('Autor não encontrado')
 
     def read_all(self) -> list:  # Listar todos os registros
         return AutorDAO.tabela_autores
-
 

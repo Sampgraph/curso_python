@@ -2,16 +2,28 @@ from model.utils import is_email_valid
 
 
 class Autor:
-    __slots__ = ['__nome', '__email', '__telefone', '__biografia']
+    id_autores = 1  # Gerador de IDs de Autores
+
+    __slots__ = ['__id', '__nome', '__email', '__telefone', '__biografia']
 
     def __init__(self, n: str, t: str, b: str =None) -> None:  # Método construtor
+        self.id = Autor.id_autores
         self.nome = n
         self.__email = None  # Convenção para definir um atributo como 'protegido'.
         self.telefone = t
         self.biografia = b
 
     def __str__(self) -> str:
-        return f"{self.__nome} | {self.__email} | {self.__telefone}"
+        return f"{self.id} | {self.__nome} | {self.__email} | {self.__telefone}"
+
+    @property
+    def id(self) -> int:
+        return self.__id
+
+    @id.setter
+    def id(self, i: int) -> None:
+        self.__id = i
+        Autor.id_autores += 1
 
     @property  # Decorator ou decoradores
     def nome(self) -> str:

@@ -42,8 +42,8 @@ class AutorService:
             print('Não existem autores cadastrados.')
         else:
             print('ID | Nome | Email | Telefone')
-            for index, autor in enumerate(autor_dao.read_all()):
-                print(f"{index + 1} | {autor} ")
+            for autor in autor_dao.read_all():
+                print(f"{autor}")
 
     def cadastrar(self):
         nome_autor = input('Digite o nome do autor: ')
@@ -70,7 +70,7 @@ class AutorService:
             while True:
                 try:
                     id_autor = int(input('Digite o ID do autor a ser excluído: '))  # cast = converte de str para int
-                    autor_dao.delete(id_autor - 1)  # -1 para ajustar o índice
+                    autor_dao.delete(id_autor)
                 except:
                     print('ID inválido. Tente novamente.')
                     continue
@@ -86,7 +86,7 @@ class AutorService:
             while True:
                 try:
                     id_autor = int(input('Digite o ID do autor a ser buscado: '))  # cast = converte de str para int
-                    autor_encontrado = autor_dao.read(id_autor - 1)
+                    autor_encontrado = autor_dao.read(id_autor)
                 except:
                     print('ID inválido. Tente novamente.')
                     continue
@@ -94,7 +94,7 @@ class AutorService:
                     break
 
             print('ID | Nome | Email | Telefone | Biografia')
-            print(f"{id_autor} | {autor_encontrado} | {autor_encontrado.biografia}")
+            print(f"{autor_encontrado} | {autor_encontrado.biografia}")
 
     def editar(self):
         if autor_dao.read_all() == []:
@@ -103,7 +103,7 @@ class AutorService:
             while True:
                 try:
                     id_autor = int(input('Digite o ID do autor a ser alterado: '))  # cast = converte de str para int
-                    autor_editado = autor_dao.read(id_autor - 1)
+                    autor_editado = autor_dao.read(id_autor)
                 except:
                     print('ID inválido. Tente novamente.')
                     continue
@@ -125,7 +125,7 @@ class AutorService:
             autor_editado.nome = nome_autor
             autor_editado.biografia = biografia_autor
             autor_editado.telefone = telefone_autor
-            autor_dao.update(id_autor - 1, autor_editado)
+            autor_dao.update(id_autor, autor_editado)
 
             print('Autor editado com sucesso!')
 
