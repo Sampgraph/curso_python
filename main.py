@@ -1,3 +1,6 @@
+from model.autor import Autor
+from service.autor_service import AutorService
+
 menu_principal = '''[Menu Principal] Escolha uma das seguintes opções:
 1 - Categorias
 2 - Editoras
@@ -19,14 +22,6 @@ menu_editoras = '''[Editoras] Escolha uma das seguintes opções:
 4 - Ver editora por Id
 0 - Voltar ao menu anterior'''
 
-menu_autores = '''[Autores] Escolha uma das seguintes opções:
-1 - Listar todos os autores
-2 - Adicionar novo autor
-3 - Excluir autor
-4 - Ver autor por Id
-5 - Editar autor
-0 - Voltar ao menu anterior'''
-
 menu_livros = '''[Livros] Escolha uma das seguintes opções:
 1 - Listar todos os livros
 2 - Adicionar novo livro
@@ -35,91 +30,12 @@ menu_livros = '''[Livros] Escolha uma das seguintes opções:
 5 - Editar livro
 0 - Voltar ao menu anterior'''
 
-tabela_autores = [] # list()
+
 tabela_categorias = []
 tabela_editoras = []
 tabela_livros = []
 
-
-class Autor:
-    __slots__ = ['__nome', '__email', '__telefone', '__biografia']
-
-    def __init__(self, n: str, t: str, b: str =None) -> None:  # Método construtor
-        self.nome = n
-        self.__email = None  # Convenção para definir um atributo como 'protegido'.
-        self.telefone = t
-        self.biografia = b
-
-    def __str__(self) -> str:
-        return f"{self.__nome} | {self.__email} | {self.__telefone}"
-
-    @property  # Decorator ou decoradores
-    def nome(self) -> str:
-        return self.__nome
-
-    @nome.setter  # Decorator ou decoradores
-    def nome(self, n: str) -> None:
-        self.__nome = n.title()
-
-    @property  # Decorator ou decoradores
-    def email(self) -> str:
-        return self.__email
-
-    @email.setter  # Decorator ou decoradores
-    def email(self, e: str) -> None:
-        if is_email_valid(e):
-            self.__email = e.lower()
-            return
-        else:
-            raise ValueError('Email inválido')
-
-    @property
-    def telefone(self) -> str:
-        return self.__telefone
-
-    @telefone.setter
-    def telefone(self, t: str) -> None:
-        self.__telefone = t
-
-    @property
-    def biografia(self) -> str:
-        return self.__biografia
-
-    @biografia.setter
-    def biografia(self, b: str) -> None:
-        self.__biografia = b
-
-
-def is_email_valid(email: str) -> bool:
-    if not isinstance(email, str):
-        return False
-
-    if '@' not in email or '.' not in email:
-        return False
-
-    if not email.isascii():
-        return False
-
-    partes = email.split('@')  # desmembrando a string
-    if len(partes) != 2:
-        return False
-
-    username = partes[0]
-    dominio = partes[1]
-
-    if not username or not dominio:
-        return False
-
-    if '.' not in dominio:
-        return False
-
-    if dominio.startswith('.') or dominio.endswith('.'):
-        return False
-
-    if ' ' in username or ' ' in dominio:
-        return False
-
-    return True
+autor_service = AutorService()
 
 
 def bloco_categoria() -> None:
@@ -289,108 +205,6 @@ def bloco_editora() -> None:
     bloco_editora()  # Chama a função recursivamente para manter o menu ativo
 
 
-def bloco_autor() -> None:
-    """
-
-    Bloco do AUTOR
-
-    """
-    print(menu_autores)
-    opcao_autor = input('[Autores] Digite a opção desejada: ')
-    if opcao_autor == '0':
-        return  # Sai da função e volta ao menu principal
-    if opcao_autor == '1':
-        if tabela_autores == []:
-            print('Não existem autores cadastrados.')
-        else:
-            print('ID | Nome | Email | Telefone')
-            for index, autor in enumerate(tabela_autores, start=1):
-                print(f"{index} | {autor} ")
-    elif opcao_autor == '2':
-        nome_autor = input('Digite o nome do autor: ')
-        biografia_autor = input('Digite a biografia do autor: ')
-        telefone_autor = input('Digite o telefone do autor: ')
-        novo_autor = Autor(nome_autor, telefone_autor, biografia_autor)
-        while True:
-            try:
-                email_autor = input('Digite o email do autor: ')
-                novo_autor.email = email_autor
-            except:
-                print('Email inválido. Tente novamente.')
-            else:
-                break  # Não ocorreu nenhuma exceção, então encerra o 'while'.
-
-        novo_autor.email = email_autor
-        tabela_autores.append(novo_autor)
-        print('Autor cadastrado com sucesso!')
-    elif opcao_autor == '3':
-        if tabela_autores == []:
-            print('Não existem autores cadastrados.')
-        else:
-            while True:
-                try:
-                    id_autor = int(input('Digite o ID do autor a ser excluído: '))  # cast = converte de str para int
-                    tabela_autores.pop(id_autor - 1)  # -1 para ajustar o índice
-                except:
-                    print('ID inválido. Tente novamente.')
-                    continue
-                else:
-                    break
-
-            print('Autor excluído com sucesso!')
-    elif opcao_autor == '4':
-        if tabela_autores == []:
-            print('Não existem autores cadastrados.')
-        else:
-            while True:
-                try:
-                    id_autor = int(input('Digite o ID do autor a ser buscado: '))  # cast = converte de str para int
-                    autor_encontrado = tabela_autores[id_autor - 1]
-                except:
-                    print('ID inválido. Tente novamente.')
-                    continue
-                else:
-                    break
-
-            print('ID | Nome | Email | Telefone | Biografia')
-            print(f"{id_autor} | {autor_encontrado} | {autor_encontrado.biografia}")
-    elif opcao_autor == '5':
-        if tabela_autores == []:
-            print('Não existem autores cadastrados.')
-        else:
-            while True:
-                try:
-                    id_autor = int(input('Digite o ID do autor a ser buscado: '))  # cast = converte de str para int
-                    autor_editado = tabela_autores[id_autor - 1]
-                except:
-                    print('ID inválido. Tente novamente.')
-                    continue
-                else:
-                    break
-
-            nome_autor = input('Digite o nome do autor: ')
-            biografia_autor = input('Digite a biografia do autor: ')
-            telefone_autor = input('Digite o telefone do autor: ')
-            while True:
-                try:
-                    email_autor = input('Digite o email do autor: ')
-                    autor_editado.email = email_autor
-                except:
-                    print('Email inválido. Tente novamente.')
-                else:
-                    break  # Não ocorreu nenhuma exceção, então encerra o 'while'.
-
-            autor_editado.nome = nome_autor
-            autor_editado.telefone = telefone_autor
-            autor_editado.biografia = biografia_autor
-            print('Autor editado com sucesso!')
-    else:
-        print('Opção inválida! Tente novamente.')
-
-    input('\nDigite <ENTER> para continuar...')
-    bloco_autor()  # Chama a função recursivamente para manter o menu ativo
-
-
 def bloco_livro() -> None:
     """
 
@@ -524,7 +338,7 @@ while True:  # Loop infinito
     elif opcao == '2':
         bloco_editora()
     elif opcao == '3':
-        bloco_autor()
+        autor_service.menu()
     elif opcao == '4':
         bloco_livro()
     else:
