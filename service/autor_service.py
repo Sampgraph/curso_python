@@ -38,12 +38,12 @@ class AutorService:
         self.menu()  # Chama a função recursivamente para manter o menu ativo
 
     def listar(self):
-        if autor_dao.tabela_autores == []:
+        if autor_dao.read_all() == []:
             print('Não existem autores cadastrados.')
         else:
             print('ID | Nome | Email | Telefone')
-            for index, autor in enumerate(autor_dao.tabela_autores, start=1):
-                print(f"{index} | {autor} ")
+            for index, autor in enumerate(autor_dao.read_all()):
+                print(f"{index + 1} | {autor} ")
 
     def cadastrar(self):
         nome_autor = input('Digite o nome do autor: ')
@@ -60,17 +60,17 @@ class AutorService:
                 break  # Não ocorreu nenhuma exceção, então encerra o 'while'.
 
         novo_autor.email = email_autor
-        autor_dao.tabela_autores.append(novo_autor)
+        autor_dao.create(novo_autor)
         print('Autor cadastrado com sucesso!')
 
     def excluir(self):
-        if autor_dao.tabela_autores == []:
+        if autor_dao.read_all() == []:
             print('Não existem autores cadastrados.')
         else:
             while True:
                 try:
                     id_autor = int(input('Digite o ID do autor a ser excluído: '))  # cast = converte de str para int
-                    autor_dao.tabela_autores.pop(id_autor - 1)  # -1 para ajustar o índice
+                    autor_dao.delete(id_autor - 1)  # -1 para ajustar o índice
                 except:
                     print('ID inválido. Tente novamente.')
                     continue
@@ -80,13 +80,13 @@ class AutorService:
             print('Autor excluído com sucesso!')
 
     def consultar_por_id(self):
-        if autor_dao.tabela_autores == []:
+        if autor_dao.read_all() == []:
             print('Não existem autores cadastrados.')
         else:
             while True:
                 try:
                     id_autor = int(input('Digite o ID do autor a ser buscado: '))  # cast = converte de str para int
-                    autor_encontrado = autor_dao.tabela_autores[id_autor - 1]
+                    autor_encontrado = autor_dao.read(id_autor - 1)
                 except:
                     print('ID inválido. Tente novamente.')
                     continue
@@ -97,13 +97,13 @@ class AutorService:
             print(f"{id_autor} | {autor_encontrado} | {autor_encontrado.biografia}")
 
     def editar(self):
-        if autor_dao.tabela_autores == []:
+        if autor_dao.read_all() == []:
             print('Não existem autores cadastrados.')
         else:
             while True:
                 try:
-                    id_autor = int(input('Digite o ID do autor a ser buscado: '))  # cast = converte de str para int
-                    autor_editado = autor_dao.tabela_autores[id_autor - 1]
+                    id_autor = int(input('Digite o ID do autor a ser alterado: '))  # cast = converte de str para int
+                    autor_editado = autor_dao.read(id_autor - 1)
                 except:
                     print('ID inválido. Tente novamente.')
                     continue
@@ -123,7 +123,9 @@ class AutorService:
                     break  # Não ocorreu nenhuma exceção, então encerra o 'while'.
 
             autor_editado.nome = nome_autor
-            autor_editado.telefone = telefone_autor
             autor_editado.biografia = biografia_autor
+            autor_editado.telefone = telefone_autor
+            autor_dao.update(id_autor - 1, autor_editado)
+
             print('Autor editado com sucesso!')
 
