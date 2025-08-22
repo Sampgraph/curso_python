@@ -20,20 +20,21 @@ class AutorService:
     def menu(self):
         print(menu_autores)
         opcao_autor = input('[Autores] Digite a opção desejada: ')
-        if opcao_autor == '0':
-            return  # Sai da função e volta ao menu principal
-        elif opcao_autor == '1':
-            self.listar()
-        elif opcao_autor == '2':
-            self.cadastrar()
-        elif opcao_autor == '3':
-            self.excluir()
-        elif opcao_autor == '4':
-            self.consultar_por_id()
-        elif opcao_autor == '5':
-            self.editar()
-        else:
-            print(f'{RED}Opção inválida! Tente novamente.{RESET}')
+        match opcao_autor:
+            case '0':
+                return  # Sai da função e volta ao menu principal
+            case '1':
+                self.listar()
+            case '2':
+                self.cadastrar()
+            case '3':
+                self.excluir()
+            case '4':
+                self.consultar_por_id()
+            case '5':
+                self.editar()
+            case _:
+                print(f'{RED}Opção inválida! Tente novamente.{RESET}')
 
         input('\nDigite <ENTER> para continuar...')
         self.menu()  # Chama a função recursivamente para manter o menu ativo
