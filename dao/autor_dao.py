@@ -35,3 +35,7 @@ class AutorDAO:
     def read_all(self) -> list:  # Listar todos os registros
         return AutorDAO.tabela_autores
 
+
+    def is_empty(self) -> bool:
+        return len(AutorDAO.tabela_autores) == 0
+

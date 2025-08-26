@@ -40,7 +40,7 @@ class AutorService:
         self.menu()  # Chama a função recursivamente para manter o menu ativo
 
     def listar(self):
-        if autor_dao.read_all() == []:
+        if autor_dao.is_empty():
             print('Não existem autores cadastrados.')
         else:
             print('ID | Nome | Email | Telefone')
@@ -66,7 +66,7 @@ class AutorService:
         print('Autor cadastrado com sucesso!')
 
     def excluir(self):
-        if autor_dao.read_all() == []:
+        if autor_dao.is_empty():
             print('Não existem autores cadastrados.')
         else:
             while True:
@@ -82,7 +82,7 @@ class AutorService:
             print('Autor excluído com sucesso!')
 
     def consultar_por_id(self):
-        if autor_dao.read_all() == []:
+        if autor_dao.is_empty():
             print('Não existem autores cadastrados.')
         else:
             while True:
@@ -99,7 +99,7 @@ class AutorService:
             print(f"{autor_encontrado} | {autor_encontrado.biografia}")
 
     def editar(self):
-        if autor_dao.read_all() == []:
+        if autor_dao.is_empty():
             print('Não existem autores cadastrados.')
         else:
             while True:
