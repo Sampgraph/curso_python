@@ -1,5 +1,8 @@
 from model.autor import Autor
 from service.autor_service import AutorService
+from service.categoria_service import CategoriaService
+from service.editora_service import EditoraService
+
 from model.utils import BLUE, GREEN, RESET
 
 menu_principal = f'''{BLUE}[Menu Principal] Escolha uma das seguintes opções:{RESET}
@@ -37,175 +40,8 @@ tabela_editoras = []
 tabela_livros = []
 
 autor_service = AutorService()
-
-
-def bloco_categoria() -> None:
-    """
-
-    Bloco da CATEGORIA
-
-    """
-    print(menu_categorias)
-    opcao_categoria = input('Digite a opção: ')
-    match opcao_categoria:
-        case '0':
-            return  # Sai da função e volta ao menu principal
-        case '1':
-            if tabela_categorias == []:
-                print('Não existem categorias cadastradas.')
-            else:
-                print('ID | Nome')
-                for index, categoria in enumerate(tabela_categorias):
-                    print(f"{index + 1} | {categoria['nome']}")
-        case '2':
-            nome_categoria = input('Digite o nome da categoria: ')
-            nova_categoria = {
-                'nome': nome_categoria
-            }
-            tabela_categorias.append(nova_categoria)
-            print('Categoria cadastrada com sucesso!')
-        case '3':
-            if tabela_categorias == []:
-                print('Não existem categorias cadastradas.')
-            else:
-                while True:
-                    try:
-                        id_categoria = int(input('Digite o ID da categoria a ser excluída: '))
-                        tabela_categorias.pop(id_categoria - 1)
-                    except:
-                        print('ID inválido. Tente novamente.')
-                        continue
-                    else:
-                        break
-
-                print('Categoria excluída com sucesso!')
-        case '4':
-            if tabela_categorias == []:
-                print('Não existem categorias cadastradas.')
-            else:
-                while True:
-                    try:
-                        id_categoria = int(input('Digite o ID do categoria a ser consultada: '))
-                        categoria = tabela_categorias[id_categoria - 1]
-                    except:
-                        print('ID inválido. Tente novamente.')
-                        continue
-                    else:
-                        break
-
-                print('ID | Nome')
-                print(f"{id_categoria} | {categoria['nome']}")
-        case '5':
-            if tabela_categorias == []:
-                print('Não existem categorias cadastradas.')
-            else:
-                while True:
-                    try:
-                        id_categoria = int(input('Digite o ID da categoria a ser editada: '))
-                        categoria = tabela_categorias[id_categoria - 1]
-                    except:
-                        print('ID inválido. Tente novamente.')
-                        continue
-                    else:
-                        break
-
-                nome_categoria = input('Digite o nome da categoria: ')
-                categoria['nome'] = nome_categoria
-                print('Categoria editada com sucesso!')
-        case _:
-            print('Opção inválida!')
-
-    input('\nDigite <ENTER> para continuar...\n')
-    bloco_categoria()  # Chama a função recursivamente para manter o menu ativo
-
-
-def bloco_editora() -> None:
-    """
-
-    Bloco da EDITORA
-
-    """
-    print(menu_editoras)
-    opcao_editora = input('Digite a opção: ')
-    match opcao_editora:
-        case '0':
-            return  # Sai da função e volta ao menu principal
-        case '1':
-            if tabela_editoras == []:
-                print('Não existem editoras cadastradas.')
-            else:
-                print('ID | Nome | Endereço | Telefone')
-                for index, editora in enumerate(tabela_editoras):
-                    print(f"{index + 1} | {editora['nome']} | {editora['endereco']} | {editora['telefone']}")
-        case '2':
-            nome_editora = input('Digite o nome da editora: ')
-            endereco_editora = input('Digite o endereço da editora: ')
-            telefone_editora = input('Digite o telefone da editora: ')
-            nova_editora = {
-                'nome': nome_editora,
-                'endereco': endereco_editora,
-                'telefone': telefone_editora
-            }
-            tabela_editoras.append(nova_editora)
-            print('Editora cadastrada com sucesso!')
-        case '3':
-            if tabela_editoras == []:
-                print('Não existem editoras cadastradas.')
-            else:
-                while True:
-                    try:
-                        id_editora = int(input('Digite o ID da editora a ser excluída: '))
-                        tabela_editoras.pop(id_editora - 1)
-                    except:
-                        print('ID inválido. Tente novamente.')
-                        continue
-                    else:
-                        break
-                print('Editora excluída com sucesso!')
-        case '4':
-            if tabela_editoras == []:
-                print('Não existem editoras cadastradas.')
-            else:
-                while True:
-                    try:
-                        id_editora = int(input('Digite o ID da editora a ser consultada: '))
-                        editora = tabela_editoras[id_editora - 1]
-                    except:
-                        print('ID inválido. Tente novamente.')
-                        continue
-                    else:
-                        break
-
-                print('ID | Nome | Endereço | Telefone')
-                print(f"{id_editora} | {editora['nome']} | {editora['endereco']} | {editora['telefone']}")
-        case '5':
-            if tabela_editoras == []:
-                print('Não existem editoras cadastradas.')
-            else:
-                while True:
-                    try:
-                        id_editora = int(input('Digite o ID da editora a ser editada: '))
-                        editora = tabela_editoras[id_editora - 1]
-                    except:
-                        print('ID inválido. Tente novamente.')
-                        continue
-                    else:
-                        break
-
-                nome_editora = input('Digite o nome da editora: ')
-                endereco_editora = input('Digite o endereço da editora: ')
-                telefone_editora = input('Digite o telefone da editora: ')
-
-                editora['nome'] = nome_editora
-                editora['endereco'] = endereco_editora
-                editora['telefone'] = telefone_editora
-
-                print('Editora editada com sucesso!')
-        case _:
-            print('Opção inválida!')
-
-    input('\nDigite <ENTER> para continuar...\n')
-    bloco_editora()  # Chama a função recursivamente para manter o menu ativo
+categoria_service = CategoriaService()
+editora_service = EditoraService()
 
 
 def bloco_livro() -> None:
@@ -339,9 +175,9 @@ while True:  # Loop infinito
             print('Você escolheu a opção 0: Sair do programa')
             break  # Sair do loop
         case '1':  # else if
-            bloco_categoria()
+            categoria_service.menu()
         case '2':
-            bloco_editora()
+            editora_service.menu()
         case '3':
             autor_service.menu()
         case '4':
