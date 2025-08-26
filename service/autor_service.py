@@ -42,10 +42,11 @@ class AutorService:
     def listar(self):
         if autor_dao.is_empty():
             print('Não existem autores cadastrados.')
-        else:
-            print('ID | Nome | Email | Telefone')
-            for autor in autor_dao.read_all():
-                print(f"{autor}")
+            return
+
+        print('ID | Nome | Email | Telefone')
+        for autor in autor_dao.read_all():
+            print(f"{autor}")
 
     def cadastrar(self):
         nome_autor = input('Digite o nome do autor: ')
@@ -62,72 +63,81 @@ class AutorService:
                 break  # Não ocorreu nenhuma exceção, então encerra o 'while'.
 
         novo_autor.email = email_autor
-        autor_dao.create(novo_autor)
-        print('Autor cadastrado com sucesso!')
+        try:
+            autor_dao.create(novo_autor)
+        except Exception as e:
+            print(f'{RED}Erro ao inserir autor! - {e}{RESET}')
+        else:
+            print('Autor cadastrado com sucesso!')
 
     def excluir(self):
         if autor_dao.is_empty():
             print('Não existem autores cadastrados.')
-        else:
-            while True:
-                try:
-                    id_autor = int(input('Digite o ID do autor a ser excluído: '))  # cast = converte de str para int
-                    autor_dao.delete(id_autor)
-                except:
-                    print(f'{RED}ID inválido. Tente novamente.{RESET}')
-                    continue
-                else:
-                    break
+            return
 
-            print('Autor excluído com sucesso!')
+        while True:
+            try:
+                id_autor = int(input('Digite o ID do autor a ser excluído: '))  # cast = converte de str para int
+                autor_dao.delete(id_autor)
+            except:
+                print(f'{RED}ID inválido. Tente novamente.{RESET}')
+                continue
+            else:
+                print('Autor excluído com sucesso!')
+                break
 
     def consultar_por_id(self):
         if autor_dao.is_empty():
             print('Não existem autores cadastrados.')
-        else:
-            while True:
-                try:
-                    id_autor = int(input('Digite o ID do autor a ser buscado: '))  # cast = converte de str para int
-                    autor_encontrado = autor_dao.read(id_autor)
-                except:
-                    print(f'{RED}ID inválido. Tente novamente.{RESET}')
-                    continue
-                else:
-                    break
+            return
 
-            print('ID | Nome | Email | Telefone | Biografia')
-            print(f"{autor_encontrado} | {autor_encontrado.biografia}")
+        while True:
+            try:
+                id_autor = int(input('Digite o ID do autor a ser buscado: '))  # cast = converte de str para int
+                autor_encontrado = autor_dao.read(id_autor)
+            except:
+                print(f'{RED}ID inválido. Tente novamente.{RESET}')
+                continue
+            else:
+                print('ID | Nome | Email | Telefone | Biografia')
+                print(f"{autor_encontrado} | {autor_encontrado.biografia}")
+                break
+
 
     def editar(self):
         if autor_dao.is_empty():
             print('Não existem autores cadastrados.')
-        else:
-            while True:
-                try:
-                    id_autor = int(input('Digite o ID do autor a ser alterado: '))  # cast = converte de str para int
-                    autor_editado = autor_dao.read(id_autor)
-                except:
-                    print(f'{RED}ID inválido. Tente novamente.{RESET}')
-                    continue
-                else:
-                    break
+            return
 
-            nome_autor = input('Digite o nome do autor: ')
-            biografia_autor = input('Digite a biografia do autor: ')
-            telefone_autor = input('Digite o telefone do autor: ')
-            while True:
-                try:
-                    email_autor = input('Digite o email do autor: ')
-                    autor_editado.email = email_autor
-                except:
-                    print(f'{RED}Email inválido. Tente novamente.{RESET}')
-                else:
-                    break  # Não ocorreu nenhuma exceção, então encerra o 'while'.
+        while True:
+            try:
+                id_autor = int(input('Digite o ID do autor a ser alterado: '))  # cast = converte de str para int
+                autor_editado = autor_dao.read(id_autor)
+            except:
+                print(f'{RED}ID inválido. Tente novamente.{RESET}')
+                continue
+            else:
+                break
 
-            autor_editado.nome = nome_autor
-            autor_editado.biografia = biografia_autor
-            autor_editado.telefone = telefone_autor
+        nome_autor = input('Digite o nome do autor: ')
+        biografia_autor = input('Digite a biografia do autor: ')
+        telefone_autor = input('Digite o telefone do autor: ')
+        while True:
+            try:
+                email_autor = input('Digite o email do autor: ')
+                autor_editado.email = email_autor
+            except:
+                print(f'{RED}Email inválido. Tente novamente.{RESET}')
+            else:
+                break  # Não ocorreu nenhuma exceção, então encerra o 'while'.
+
+        autor_editado.nome = nome_autor
+        autor_editado.biografia = biografia_autor
+        autor_editado.telefone = telefone_autor
+        try:
             autor_dao.update(id_autor, autor_editado)
-
+        except Exception as e:
+            print(f'{RED}Erro ao editar autor! - {e}{RESET}')
+        else:
             print('Autor editado com sucesso!')
 

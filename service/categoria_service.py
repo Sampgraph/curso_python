@@ -9,6 +9,7 @@ menu_categorias = f"""
 2 - Adicionar nova categoria
 3 - Excluir categoria
 4 - Ver categoria por Id
+5 - Editar categoria
 0 - Voltar ao menu anterior
 """
 
@@ -20,18 +21,21 @@ class CategoriaService:
         print(menu_categorias)
         escolha = input('Digite a opção: ')
 
-        if escolha == '0':
-            return
-        elif escolha == '1':
-            self.listar()
-        elif escolha == '2':
-            self.adicionar()
-        elif escolha == '3':
-            self.remover()
-        elif escolha == '4':
-            self.mostrar_por_id()
-        else:
-            print('Opção inválida. Por favor, tente novamente!')
+        match escolha:
+            case '0':
+                return
+            case '1':
+                self.listar()
+            case '2':
+                self.adicionar()
+            case '3':
+                self.remover()
+            case '4':
+                self.consultar_por_id()
+            case '5':
+                self.editar()
+            case _:
+                print('Opção inválida. Por favor, tente novamente!')
 
         input('\nDigite <ENTER> para continuar...')
         self.menu()
@@ -72,7 +76,7 @@ class CategoriaService:
         else:
             print('Categoria não encontrada!')
 
-    def mostrar_por_id(self):
+    def consultar_por_id(self):
         if CategoriaService.categoria_dao.is_empty():
             print("Nenhuma Categoria cadastrada.")
         else:
@@ -87,4 +91,24 @@ class CategoriaService:
                     print('Categoria não encontrada!')
             except Exception as ex:
                 print(f'Erro ao exibir categoria por ID: {ex}')
+
+    def editar(self):
+        if CategoriaService.categoria_dao.is_empty():
+            print("Nenhuma Categoria cadastrada.")
+            return
+
+        while True:
+            try:
+                id_categoria = int(input('Digite o ID da categoria a ser alterada: '))  # cast = converte de str para int
+                categoria = CategoriaService.categoria_dao.read(id_categoria)
+            except:
+                print(f'{RED}ID inválido. Tente novamente.{RESET}')
+                continue
+            else:
+                break
+
+        nome = input('Digite o nome da categoria de livro: ')
+        categoria.nome = nome
+        CategoriaService.categoria_dao.update(id_categoria, categoria)
+        print('Categoria editada com sucesso!')
 

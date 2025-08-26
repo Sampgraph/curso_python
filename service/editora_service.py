@@ -1,13 +1,15 @@
 from dao.editora_dao import EditoraDAO
 from model.editora import Editora
+from model.utils import GREEN, RED, RESET
 
 
-menu_editoras = """
+menu_editoras = f"""
 {GREEN}[Editoras] Escolha uma das seguintes opções:{RESET}
 1 - Listar todas as editoras
 2 - Adicionar nova editora
 3 - Excluir editora
 4 - Ver editora por Id
+5 - Editar editora
 0 - Voltar ao menu anterior
 """
 
@@ -19,18 +21,21 @@ class EditoraService:
         print(menu_editoras)
         escolha = input('Digite a opção: ')
 
-        if escolha == '0':
-            return
-        elif escolha == '1':
-            self.listar()
-        elif escolha == '2':
-            self.adicionar()
-        elif escolha == '3':
-            self.remover()
-        elif escolha == '4':
-            self.mostrar_por_id()
-        else:
-            print('Opção inválida. Por favor, tente novamente!')
+        match escolha:
+            case '0':
+                return
+            case '1':
+                self.listar()
+            case '2':
+                self.adicionar()
+            case '3':
+                self.remover()
+            case '4':
+                self.consultar_por_id()
+            case '5':
+                self.editar()
+            case _:
+                print('Opção inválida. Por favor, tente novamente!')
 
         input('\nDigite <ENTER> para continuar...')
         self.menu()
@@ -50,8 +55,6 @@ class EditoraService:
             print(f'Erro ao exibir as editoras! - {e}')
             return
 
-        input('Pressione uma tecla para continuar...')
-
     def adicionar(self):
         print('\nAdicionando editora...')
 
@@ -65,8 +68,6 @@ class EditoraService:
             print(f'Erro ao inserir editora! - {e}')
         else:
             print('Editora adicionada com sucesso!')
-
-        input('Pressione uma tecla para continuar...')
 
     def remover(self):
         if EditoraService.editora_dao.is_empty():
@@ -85,7 +86,7 @@ class EditoraService:
             print(f'Erro ao excluir editora! - {e}')
             return
 
-    def mostrar_por_id(self):
+    def consultar_por_id(self):
         if EditoraService.editora_dao.is_empty():
             print("Nenhuma Editora cadastrada.")
         else:
@@ -102,3 +103,28 @@ class EditoraService:
             except Exception as e:
                 print(f'Erro ao exibir editora! - {e}')
                 return
+
+    def editar(self):
+        if EditoraService.editora_dao.is_empty():
+            print("Nenhuma Editora cadastrada.")
+            return
+
+        while True:
+            try:
+                id_editora = int(input('Digite o ID da editora a ser alterada: '))  # cast =
+                editora = EditoraService.editora_dao.read(id_editora)
+            except:
+                print(f'{RED}ID inválido. Tente novamente.{RESET}')
+                continue
+            else:
+                break
+
+        nome = input('Digite o nome da editora: ')
+        endereco = input('Digite o endereço da editora: ')
+        telefone = input('Digite o telefone da editora: ')
+        editora.nome = nome
+        editora.endereco = endereco
+        editora.telefone = telefone
+        EditoraService.editora_dao.update(id_editora, editora)
+
+        print('Editora editada com sucesso!')
