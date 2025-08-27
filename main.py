@@ -6,16 +6,13 @@ from service.livro_service import LivroService
 
 from model.utils import BLUE, GREEN, RESET
 
+
 menu_principal = f'''{BLUE}[Menu Principal] Escolha uma das seguintes opções:{RESET}
 1 - Categorias
 2 - Editoras
 3 - Autores
 4 - Livros
 0 - Sair do programa'''
-
-
-
-tabela_livros = []
 
 autor_service = AutorService()
 categoria_service = CategoriaService()
