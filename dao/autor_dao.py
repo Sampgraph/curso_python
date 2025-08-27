@@ -2,15 +2,15 @@ from model.autor import Autor
 
 
 class AutorDAO:
-    tabela_autores = [] # Atributo de classe representando a tabela de Autores.
+    __tabela_autores = [] # Atributo de classe representando a tabela de Autores.
 
     # Métodos CRUD
 
     def create(self, autor: Autor):
-        AutorDAO.tabela_autores.append(autor)
+        AutorDAO.__tabela_autores.append(autor)
 
     def read(self, id: int):
-        for autor in AutorDAO.tabela_autores:
+        for autor in AutorDAO.__tabela_autores:
             if autor.id == id:
                 return autor
 
@@ -18,24 +18,24 @@ class AutorDAO:
         raise IndexError('Autor não encontrado')
 
     def update(self, id: int, autor: Autor):
-        for index, autor in enumerate(AutorDAO.tabela_autores):
+        for index, autor in enumerate(AutorDAO.__tabela_autores):
             if autor.id == id:
-                AutorDAO.tabela_autores[index] = autor
+                AutorDAO.__tabela_autores[index] = autor
                 return
 
     def delete(self, id: int):
-        for autor in AutorDAO.tabela_autores:
+        for autor in AutorDAO.__tabela_autores:
             if autor.id == id:
-                AutorDAO.tabela_autores.remove(autor)
+                AutorDAO.__tabela_autores.remove(autor)
                 return
 
         # Se chegar até nessa linha significa que o autor não foi encontrado.
         raise IndexError('Autor não encontrado')
 
     def read_all(self) -> list:  # Listar todos os registros
-        return AutorDAO.tabela_autores
+        return AutorDAO.__tabela_autores
 
 
     def is_empty(self) -> bool:
-        return len(AutorDAO.tabela_autores) == 0
+        return len(AutorDAO.__tabela_autores) == 0
 
